@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class MyLinkedListTest {
-    private MyLinkedList<Double> linkedList;
+    private List<Double> linkedList;
 
     @Before
     public void setUp() {

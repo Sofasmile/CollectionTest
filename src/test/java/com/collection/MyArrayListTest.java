@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class MyArrayListTest {
-    private MyArrayList<String> arrayList;
+    private List<String> arrayList;
 
     @Before
     public void setUp() {
@@ -32,7 +32,7 @@ public class MyArrayListTest {
         assertEquals("Third", arrayList.get(1));
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testRemoveElementException() {
         arrayList.remove(20);
     }
@@ -42,7 +42,7 @@ public class MyArrayListTest {
         assertEquals("Second", arrayList.get(1));
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testGetElementException() {
         arrayList.get(12);
     }
