@@ -41,6 +41,7 @@ public class RegularUtilTest {
         listDate.add("29.02.2019");
         listDate.add("31.04.1999");
         listDate.add("30.02.2000");
+        listDate.add("29.02.1900");
 
         listIp = new ArrayList<>();
         listIp.add("192.192.0.0");
@@ -78,6 +79,7 @@ public class RegularUtilTest {
         assertFalse(RegularUtil.isDate(listDate.get(5)));
         assertFalse(RegularUtil.isDate(listDate.get(6)));
         assertFalse(RegularUtil.isDate(listDate.get(7)));
+        assertFalse(RegularUtil.isDate(listDate.get(8)));
     }
 
     @Test
