@@ -14,6 +14,7 @@ import java.beans.XMLEncoder;
 
 public class XmlGenetare {
     private static final Logger LOGGER = Logger.getLogger(XmlGenetare.class.getName());
+
     public void makeMultiLayerStructure() {
         List<Map<List<Set<Integer>>, String>> listStructure = new ArrayList<>();
         Integer number = 6;
