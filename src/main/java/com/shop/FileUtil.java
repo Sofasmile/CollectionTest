@@ -17,11 +17,11 @@ import java.util.List;
 
 public class FileUtil {
     private static final Logger LOGGER = Logger.getLogger(XmlGenetare.class.getName());
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("dd/MM/yyyy").create();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setDateFormat("dd/MM/yyyy").create();
 
     public static void writeToFile(List list, String filePath) {
         try (Writer writer = new FileWriter(filePath)) {
-            gson.toJson(list, writer);
+            GSON.toJson(list, writer);
         } catch (IOException e) {
             LOGGER.info(e.getMessage());
         }
@@ -31,7 +31,7 @@ public class FileUtil {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
             Type fruitListType = new TypeToken<ArrayList<Fruit>>() {
             }.getType();
-            return gson.fromJson(bufferedReader, fruitListType);
+            return GSON.fromJson(bufferedReader, fruitListType);
         } catch (IOException e) {
             LOGGER.info(e.getMessage());
             return null;
