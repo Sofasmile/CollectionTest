@@ -10,8 +10,4 @@ public class YouTubeVideo {
     public List<Comment> getComments() {
         return comments;
     }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }

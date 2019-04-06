@@ -35,7 +35,7 @@ public class Authorization {
                 HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, scopes).setCredentialDataStore(datastore)
                 .build();
 
-        LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
+        LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8081).build();
 
         return new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
     }
