@@ -23,7 +23,7 @@ public class YouTubeParser {
         try {
             credential = Authorization.authorize(scopes, "commentThreads");
         } catch (Exception e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         youtube = new YouTube.Builder(Authorization.HTTP_TRANSPORT, Authorization.JSON_FACTORY, credential)
                 .setApplicationName("youtube comments parser").build();
@@ -37,11 +37,13 @@ public class YouTubeParser {
 
             for (CommentThread videoComment : videoComments) {
                 snippet = videoComment.getSnippet().getTopLevelComment().getSnippet();
-                Comment comment = new Comment(snippet.getAuthorDisplayName(),
-                        snippet.getTextDisplay(),
-                        snippet.getLikeCount(),
-                        snippet.getPublishedAt(),
-                        !(snippet.getUpdatedAt().equals(snippet.getPublishedAt())));
+                Comment comment = new Comment.Bilder()
+                        .setAuthorName(snippet.getAuthorDisplayName())
+                        .setMessageText(snippet.getTextDisplay())
+                        .setLike(snippet.getLikeCount())
+                        .setLastModified(snippet.getPublishedAt())
+                        .setEditing(!(snippet.getUpdatedAt().equals(snippet.getPublishedAt())))
+                        .build();
                 youtubeVideo.getComments().add(comment);
             }
             listOfVideos.add(youtubeVideo);
@@ -54,9 +56,12 @@ public class YouTubeParser {
             videoCommentsListResponse = youtube.commentThreads().list("snippet")
                     .setVideoId(videoId).setTextFormat("plainText").execute();
         } catch (IOException e) {
-            LOGGER.info(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
-        return videoCommentsListResponse.getItems();
+        if (videoCommentsListResponse != null) {
+            return videoCommentsListResponse.getItems();
+        }
+        throw new NullPointerException("NullPointerException");
     }
 
     public List<YouTubeVideo> getListOfVideos() {

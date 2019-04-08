@@ -9,14 +9,6 @@ public class Comment {
     private DateTime lastModified;
     private boolean editing;
 
-    public Comment(String authorName, String messageText, long like, DateTime lastModified, boolean editing) {
-        this.authorName = authorName;
-        this.messageText = messageText;
-        this.like = like;
-        this.lastModified = lastModified;
-        this.editing = editing;
-    }
-
     public String getAuthorName() {
         return authorName;
     }
@@ -37,23 +29,40 @@ public class Comment {
         return editing;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
+    public static class Bilder {
+        private Comment comment;
 
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
-    }
+        public Bilder() {
+            comment = new Comment();
+        }
 
-    public void setLike(long like) {
-        this.like = like;
-    }
+        public Bilder setAuthorName(String authorName) {
+            comment.authorName = authorName;
+            return this;
+        }
 
-    public void setLastModified(DateTime lastModified) {
-        this.lastModified = lastModified;
-    }
+        public Bilder setMessageText(String messageText) {
+            comment.messageText = messageText;
+            return this;
+        }
 
-    public void setEditing(boolean editing) {
-        this.editing = editing;
+        public Bilder setLike(long like) {
+            comment.like = like;
+            return this;
+        }
+
+        public Bilder setLastModified(DateTime lastModified) {
+            comment.lastModified = lastModified;
+            return this;
+        }
+
+        public Bilder setEditing(boolean editing) {
+            comment.editing = editing;
+            return this;
+        }
+
+        public Comment build() {
+            return comment;
+        }
     }
 }
