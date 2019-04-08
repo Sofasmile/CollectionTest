@@ -1,5 +1,6 @@
 package com.api;
 
+import com.exception.CommentThreadEmptyException;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.CommentSnippet;
@@ -61,7 +62,7 @@ public class YouTubeParser {
         if (videoCommentsListResponse != null) {
             return videoCommentsListResponse.getItems();
         }
-        throw new NullPointerException("NullPointerException");
+        throw new CommentThreadEmptyException("VideoCommentsListResponse is null!");
     }
 
     public List<YouTubeVideo> getListOfVideos() {
