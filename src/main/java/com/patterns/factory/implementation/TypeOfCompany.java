@@ -1,6 +1,6 @@
 package com.patterns.factory.implementation;
 
-public enum  TypeOfCompany {
+public enum TypeOfCompany {
     LENOVO,
-    ASUS,
+    ASUS
 }
