@@ -9,12 +9,16 @@ public class VehicleFactory {
     public Vehicle getVehicle(VehicleType kindOfVehicle) {
         Vehicle vehicle = VEHICLES.get(kindOfVehicle);
         if (vehicle == null) {
-            if (kindOfVehicle.equals(VehicleType.BIKE)) {
-                vehicle = new Bike();
-            } else if (kindOfVehicle.equals(VehicleType.BUS)) {
-                vehicle = new Bus();
-            } else if (kindOfVehicle.equals(VehicleType.CAR)) {
-                vehicle = new Car();
+            switch (kindOfVehicle) {
+                case BIKE:
+                    vehicle = new Bike();
+                    break;
+                case BUS:
+                    vehicle = new Bus();
+                    break;
+                case CAR:
+                    vehicle = new Car();
+                    break;
             }
             VEHICLES.put(kindOfVehicle, vehicle);
         }

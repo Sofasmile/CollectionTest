@@ -1,18 +1,10 @@
 package com.patterns.factory;
 
-import com.patterns.factory.implementation.AsusDeviceFactory;
-import com.patterns.factory.implementation.LenovoDeviceFactory;
+import com.patterns.factory.implementation.TypeOfCompany;
 
 public class AbstractFactoryApplication {
     public static void main(String[] args) {
-        String country = "Lenovo";
-        DeviceFactory factory = null;
-        if (country.equals("Lenovo")) {
-            factory = new LenovoDeviceFactory();
-        } else if (country.equals("Asus")) {
-            factory = new AsusDeviceFactory();
-        }
-
+        DeviceFactory factory = AbstractFactory.getFactory(TypeOfCompany.ASUS);
         Laptop laptop = factory.getLeptop();
         System.out.println(laptop.getLaptopPrice());
     }

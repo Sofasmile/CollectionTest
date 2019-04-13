@@ -9,17 +9,21 @@ public class FactoryMethod {
 
     public Os getCurrentOS(TypeOfOS name) {
         Os os = null;
-        if (name.equals(TypeOfOS.WINDOWS)) {
-            os = new WindowsOS.Builder()
-                    .setBitDepth(BIT_DEPTH)
-                    .setMultithreading(MULTITHREADING)
-                    .setPerformance(PERFORMANCE)
-                    .setTypeOfUI(TYPE_OF_UI)
-                    .build();
-        } else if (name.equals(TypeOfOS.LINUX)) {
-            os = LinuxOS.getInstance(MULTITHREADING, TYPE_OF_UI);
-        } else if (name.equals(TypeOfOS.MAC)) {
-            os = new ProxyMacOS(SITE);
+        switch (name) {
+            case WINDOWS:
+                os = new WindowsOS.Builder()
+                        .setBitDepth(BIT_DEPTH)
+                        .setMultithreading(MULTITHREADING)
+                        .setPerformance(PERFORMANCE)
+                        .setTypeOfUI(TYPE_OF_UI)
+                        .build();
+                break;
+            case LINUX:
+                os = LinuxOS.getInstance(MULTITHREADING, TYPE_OF_UI);
+                break;
+            case MAC:
+                os = new ProxyMacOS(SITE);
+                break;
         }
         return os;
     }
